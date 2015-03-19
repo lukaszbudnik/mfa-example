@@ -11,8 +11,9 @@ import org.junit.Test;
 import java.io.File;
 import java.io.IOException;
 
-public class MfaTest {
+public class Rfc6238Test {
 
+    private String application = "lukaszbudnik";
     private String testUser = "test-user";
 
     @Test
@@ -22,13 +23,13 @@ public class MfaTest {
 
         GoogleAuthenticatorKey key = gAuth.createCredentials();
 
-        String url = GoogleAuthenticatorQRGenerator.getOtpAuthURL("lukaszbudnik", testUser, key);
+        String url = GoogleAuthenticatorQRGenerator.getOtpAuthURL(application, testUser, key);
 
         System.out.println(url);
 
-        String totpUrl = GoogleAuthenticatorQRGenerator.getOtpAuthTotpURL("lukaszbudnik", testUser, key);
+        String totpUrl = GoogleAuthenticatorQRGenerator.getOtpAuthTotpURL(application, testUser, key);
 
-        File file = QRCode.from(totpUrl).to(ImageType.PNG).withSize(250, 250).file("/tmp/" + key.getKey());
+        File file = QRCode.from(totpUrl).to(ImageType.PNG).withSize(250, 250).file();
 
         System.out.println("Copy above url into browser or open above file and configure Google Authenticator");
 
