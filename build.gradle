@@ -6,11 +6,17 @@ repositories {
     mavenCentral()
 }
 
+test {
+    testLogging {
+        outputs.upToDateWhen {false}
+        showStandardStreams = true
+    }
+}
 
 dependencies {
-    compile 'com.warrenstrange:googleauth:0.4.3'
-    compile 'org.jboss.aerogear:aerogear-otp-java:1.0.0'
-    compile 'net.glxn.qrgen:javase:2.0'
+    implementation 'org.jboss.aerogear:aerogear-otp-java:1.0.0'
+    implementation 'org.cryptacular:cryptacular:1.2.4'
+    implementation 'net.glxn.qrgen:javase:2.0'
 
-    testCompile 'junit:junit:4.12'
+    testImplementation 'junit:junit:4.12'
 }
